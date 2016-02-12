@@ -8,15 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/personServlet")
-public class PersonServlet extends HttpServlet {
+/**    
+* @author marfoldi
+*/
 
+@WebServlet(urlPatterns = "/personServlet")
+public class DudeServlet extends HttpServlet {
+
+	private static final long serialVersionUID = 8781511330610190027L;
 	@Inject
-	private PersonBean personBean;
+	private DudeBean dudeBean;
 
 	@Override
 	protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-		personBean.setName(httpServletRequest.getParameter("name"));
+		dudeBean.setName(httpServletRequest.getParameter("name"));
 		httpServletResponse.sendRedirect("index.jsp");
 	}
 }
