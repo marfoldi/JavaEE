@@ -1,14 +1,14 @@
 package hu.marfoldi.example.javaee;
 
 import java.io.Serializable;
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**    
 * @author marfoldi
 */
 
-@Named
+@ManagedBean
 @SessionScoped
 public class DudeBean implements Serializable {
 
