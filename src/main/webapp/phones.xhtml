@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+    <f:metadata>
+        <f:viewParam name="dudeId" value="#{phoneService.dude}" converter="#{dudeConverter}"/>
+    </f:metadata>
+
+    <h1>Phones by person</h1>
+
+    <h:link outcome="/dudes" value="Back to dudes"/>
+    <hr/>
+
+    <h:panelGrid columns="2">
+        Name:
+        <h:outputText value="#{phoneService.dude.name}"/>
+        Birthday:
+        <h:outputText value="#{phoneService.dude.birthday}">
+            <f:convertDateTime pattern="yyyy-MM-dd"/>
+        </h:outputText>
+    </h:panelGrid>
+
+    <hr/>
+
+    <h:form>
+
+        <h:panelGrid columns="2">
+            Type:
+            <h:selectOneMenu id="phoneType" binding="#{phoneType}">
+                <f:selectItem itemValue="WORK" itemLabel="Work"/>
+                <f:selectItem itemValue="HOME" itemLabel="Home"/>
+            </h:selectOneMenu>
+            Number:
+            <h:inputText id="phoneNumber" binding="#{phoneNumber}"/>
+        </h:panelGrid>
+
+        <h:commandButton value="Add phone number to dude" action="#{phoneService.addPhone(phoneType.value, phoneNumber.value)}"/>
+
+        <hr/>
+
+        <h:dataTable value="#{phoneService.phones}" var="phone" border="1" cellpadding="2" cellspacing="0">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                <h:outputText value="#{phone.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Type</f:facet>
+                <h:outputText value="#{phone.type}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Number</f:facet>
+                <h:outputText value="#{phone.number}"/>
+            </h:column>
+        </h:dataTable>
+
+    </h:form>
+
+</f:view>
+</html>

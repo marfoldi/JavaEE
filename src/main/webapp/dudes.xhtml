@@ -1,43 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <f:view>
-    <h1>Dudes</h1>
-    <hr/>
+	<h1>Dudes</h1>
+	<hr />
 
-    <h:form>
+	<h:form>
 
-        <h:panelGrid columns="2">
+		<h:panelGrid columns="2">
             Name:
-            <h:inputText id="dudeName" binding="#{dudeName}"/>
+            <h:inputText id="dudeName" binding="#{dudeName}" />
             Birthday:
-            <h:inputText id="dudeBirthday" binding="#{dudeBirthday}" title="Format: yyyy-MM-dd, eg.: 1980-06-25">
-                <f:convertDateTime pattern="yyyy-MM-dd"/>
-            </h:inputText>
-        </h:panelGrid>
+            <h:inputText id="dudeBirthday" binding="#{dudeBirthday}"
+				title="Format: yyyy-MM-dd, eg.: 1980-06-25">
+				<f:convertDateTime pattern="yyyy-MM-dd" />
+			</h:inputText>
+		</h:panelGrid>
 
-        <h:commandButton value="Add dude" action="#{dudeService.addDude(dudeName.value, dudeBirthday.value)}"/>
+		<h:commandButton value="Add dude"
+			action="#{dudeService.addDude(dudeName.value, dudeBirthday.value)}" />
 
-        <hr/>
+		<hr />
 
-        <h:dataTable value="#{dudeService.dudes}" var="dude" border="1" cellpadding="2" cellspacing="0">
-            <h:column>
-                <f:facet name="header">ID</f:facet>
-                <h:outputText value="#{dude.id}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Name</f:facet>
-                <h:outputText value="#{dude.name}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Birthday</f:facet>
-                <h:outputText value="#{dude.birthday}">
-                    <f:convertDateTime pattern="yyyy-MM-dd"/>
-                </h:outputText>
-            </h:column>
-        </h:dataTable>
+		<h:dataTable value="#{dudeService.dudes}" var="dude" border="1"
+			cellpadding="2" cellspacing="0">
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputText value="#{dude.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Name</f:facet>
+				<h:outputText value="#{dude.name}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Birthday</f:facet>
+				<h:outputText value="#{dude.birthday}">
+					<f:convertDateTime pattern="yyyy-MM-dd" />
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<h:link value="Phones" outcome="/phones">
+					<f:param name="dudeId" value="#{dude.id}" />
+				</h:link>
+			</h:column>
+		</h:dataTable>
 
-    </h:form>
+	</h:form>
 
 </f:view>
 </html>

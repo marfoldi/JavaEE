@@ -14,7 +14,7 @@ import hu.marfoldi.example.javaee.model.BaseEntity;
 @Stateless
 public class BaseDao {
 
-	@PersistenceContext(unitName="JAVAEE_PU")
+	@PersistenceContext(unitName = "JAVAEE_PU")
 	private EntityManager entityManager;
 
 	public <E extends BaseEntity> List<E> query(Class<E> entityClass, String queryName) {
@@ -30,4 +30,7 @@ public class BaseDao {
 		}
 	}
 
+	public <E extends BaseEntity> E find(Class<E> entityClass, Long id) {
+		return entityManager.find(entityClass, id);
+	}
 }
