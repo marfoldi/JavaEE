@@ -3,11 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
 <f:view>
     <h1>Hello World!</h1>
-    Person name: ${dudeBean.name} <br/>
+    
+    <br/> Dude name: ${dudeBean.name} <br/>
 
     <h:form>
         <h:inputText value="#{dudeBean.name}"/>
         <h:commandButton value="Set"/>
     </h:form>
+    <h:link outcome="/dudes" value="Dudes"/>
 </f:view>
 </html>
